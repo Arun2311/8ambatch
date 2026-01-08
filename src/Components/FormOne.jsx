@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState ,useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+
 export default function FormOne() {
+
+  const inputref = useRef(null)
   const [name, setname] = useState("");
 
   const handlename = (e) => {
-    console.log(e.target.value);
+  setname(e.target.value);
 
-    setname(e.target.value)
   };
+
+
+  useEffect(()=>{
+inputref.current.focus()
+  },[])
 
 
   return (
@@ -18,21 +25,16 @@ export default function FormOne() {
       <form>
         <label>Name : </label>
 
-        <input onChange={handlename} placeholder="Enter" />
+        <input ref={inputref} onChange={handlename} placeholder="Entefdfdr" />
 
         <br />
         <br />
-
-
 
         <button>Submit</button>
 
-
         {/* <a/> */}
 
-
-                {name}
-
+        {name}
       </form>
     </div>
   );
